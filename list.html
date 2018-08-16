@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    
+    <div id="app">
+      <h2>Пользователи: {{ usersLength }}</h2>
+      <button type="button" v-on:click="toggleListUsers">
+        {{ tooltipToggleListUsers }}
+      </button>
+      <component is="users-list" v-bind:list="users" v-show="showListUsers" v-on:click="removeUserFromList"></component>
+    </div>
+    
+    <template id="usersList">
+      <table>
+        <tr>
+          <th>Фамилия</th>
+          <th>Имя</th>
+          <th>Отчество</th>
+          <th>Аватар</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr v-for="item in list" v-bind:key="item.id">
+          <td>{{ item.lastName | capitalize }}</td>
+          <td>{{ item.firstName | capitalize}}</td>
+          <td>{{ item.middleName | capitalize }}</td>
+          <td>
+            <img class="user__img" v-if="item.image" v-bind:alt="item.lastName + ' ' + item.firstName" v-bind:src="item.image" />
+            <img class="user__img" v-else="item.image" alt="Нет аватара" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_5r78qIrlMdS-ZfKVvdiqWAhPPeG8LykbwdcZh954EZMoYfMHFQ" />
+          </td>
+          <td>
+            <button type="button" v-on:click="removeUser(item.id)">x</button>
+          </td>
+          <td>
+            <a href="edit.html">edit</a>
+          </td>
+        </tr>
+      </table>
+    </template>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="script.js"></script>
+    
+  </body>
+
+</html>

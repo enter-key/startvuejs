@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    
+    <div id="app">
+      <h2>Редактирование пользователя</h2>
+      <component is="user-edit" v-bind:user="user" v-on:click="editUserData"></component>
+    </div>
+
+    <template id="userEdit">
+      <form>
+        <table>
+          <tr>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Аватар</th>
+            <th></th>
+          </tr>
+          <tr>
+            <td><input v-model.trim="user.lastName" placeholder="user.lastName"></td>
+            <td><input v-model.trim="user.firstName" placeholder="user.firstName"></td>
+            <td><input v-model.trim="user.middleName" placeholder="user.middleName"></td>
+            <td>
+              <img class="user__img" v-if="user.image" v-bind:alt="user.lastName + ' ' + user.firstName" v-bind:src="user.image" />
+              <img class="user__img" v-else="user.image" alt="Нет аватара" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_5r78qIrlMdS-ZfKVvdiqWAhPPeG8LykbwdcZh954EZMoYfMHFQ" />
+              <!-- <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+              <button v-on:click="submitFile()">Submit</button> -->
+            </td>
+            </td>
+            <td><button type="button" v-on:click="editUser(user)">save</button></td>
+          </tr>
+        </table>
+      </form>
+    </template>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="script.js"></script>
+    
+  </body>
+
+</html>
